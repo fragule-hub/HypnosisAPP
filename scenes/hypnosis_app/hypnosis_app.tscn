@@ -25,7 +25,13 @@ swipe_close_threshold = 60.0
 offset_right = 540.0
 offset_bottom = 1170.0
 mouse_filter = 2
+target_size = null
+follow_rect_for_tex = null
 tex_size_override = Vector2(540, 1170)
+center = null
+speed = null
+use_single_color = null
+single_color = null
 rings = {
 "colors": [Color(1, 0, 1, 1), Color(1, 1, 1, 1)],
 "count": 2,
@@ -284,3 +290,14 @@ color = Color(0.65882355, 0, 0.654902, 1)
 layout_mode = 2
 min_value = 1.0
 value = 20.0
+
+[node name="退出" type="Button" parent="设置面板/PanelContainer/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 24
+text = "退出"
+
+[connection signal="pressed" from="设置面板/PanelContainer/VBoxContainer/退出" to="." method="_on_退出_pressed"]

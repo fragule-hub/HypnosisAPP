@@ -25,6 +25,8 @@ class_name HypnosisAPP
 @onready var 内边框颜色: HBoxContainer = %内边框颜色
 @onready var 外边框颜色: HBoxContainer = %外边框颜色
 
+@onready var 退出: Button = %退出
+
 @export var swipe_open_threshold: float = 120.0
 @export var swipe_close_threshold: float = 120.0
 @export var panel_anim_duration: float = 0.25
@@ -42,7 +44,7 @@ var _press_start_pos: Vector2 = Vector2.ZERO
 
 func _ready() -> void:
 	get_viewport().size_changed.connect(_on_viewport_size_changed)
-	_apply_window_size(Vector2(get_viewport().size))
+	_apply_window_size(_get_visible_size())
 	_connect_ui()
 	_apply_all_from_ui()
 	_set_settings_visible(false)
@@ -52,11 +54,11 @@ func _ready() -> void:
 	面板容器.anchor_right = 1.0
 	面板容器.anchor_bottom = 1.0
 	await get_tree().process_frame
-	_apply_window_size(Vector2(get_viewport().size))
+	_apply_window_size(_get_visible_size())
 	load_settings()
 
 func _on_viewport_size_changed() -> void:
-	_apply_window_size(Vector2(get_viewport().size))
+	_apply_window_size(_get_visible_size())
 
 func _apply_window_size(sz: Vector2) -> void:
 	if 波纹:
@@ -73,7 +75,7 @@ func _set_settings_visible(visible_on: bool) -> void:
 
 func _animate_settings(open: bool) -> void:
 	var tw := create_tween()
-	var h := float(get_viewport().size.y)
+	var h := float(_get_visible_size().y)
 	var slide := -h * panel_slide_ratio
 	if open:
 		设置面板.visible = true
@@ -189,13 +191,19 @@ func _input(event: InputEvent) -> void:
 
 func _calc_open_threshold() -> float:
 	if use_ratio_thresholds:
-		return float(get_viewport().size.y) * threshold_ratio
+		return float(_get_visible_size().y) * threshold_ratio
 	return swipe_open_threshold
 
 func _calc_close_threshold() -> float:
 	if use_ratio_thresholds:
-		return float(get_viewport().size.y) * threshold_ratio
+		return float(_get_visible_size().y) * threshold_ratio
 	return swipe_close_threshold
+
+func _get_visible_size() -> Vector2:
+	var rect := get_viewport().get_visible_rect()
+	if rect:
+		return rect.size
+	return Vector2(get_viewport().size)
 
 func _connect_ui() -> void:
 	全屏.toggled.connect(_on_fullscreen_toggled)
@@ -245,6 +253,7 @@ func _on_fullscreen_toggled(on: bool) -> void:
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
 	else:
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
+	_apply_window_size(_get_visible_size())
 
 func _on_heart_visible_toggled(on: bool) -> void:
 	if settings and not _loading:
@@ -394,3 +403,6 @@ func _apply_heart_strokes_from_ui() -> void:
 	var inner_w := float((内边框颜色.get_node("SpinBox") as SpinBox).value)
 	var outer_w := float((外边框颜色.get_node("SpinBox") as SpinBox).value)
 	Heart.set_strokes(inner_w, outer_w)
+
+func _on_退出_pressed() -> void:
+	get_tree().quit()

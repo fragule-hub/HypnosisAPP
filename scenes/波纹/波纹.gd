@@ -28,6 +28,19 @@ func _ready() -> void:
 func _apply_layout() -> void:
 	custom_minimum_size = target_size
 	waves.custom_minimum_size = target_size
+	anchor_left = 0.0
+	anchor_top = 0.0
+	anchor_right = 1.0
+	anchor_bottom = 1.0
+	size_flags_horizontal = Control.SIZE_EXPAND | Control.SIZE_FILL
+	size_flags_vertical = Control.SIZE_EXPAND | Control.SIZE_FILL
+	waves.anchor_left = 0.0
+	waves.anchor_top = 0.0
+	waves.anchor_right = 1.0
+	waves.anchor_bottom = 1.0
+	waves.size_flags_horizontal = Control.SIZE_EXPAND | Control.SIZE_FILL
+	waves.size_flags_vertical = Control.SIZE_EXPAND | Control.SIZE_FILL
+	queue_sort()
 
 func _apply_mode_and_params() -> void:
 	if use_single_color:
