@@ -70,7 +70,7 @@ func _apply_window_size(sz: Vector2) -> void:
 func _set_settings_visible(visible_on: bool) -> void:
 	设置面板.visible = visible_on
 	if visible_on:
-		面板容器.queue_sort()
+		面板容器.update_minimum_size()
 		面板容器.queue_redraw()
 
 func _animate_settings(open: bool) -> void:
@@ -79,7 +79,7 @@ func _animate_settings(open: bool) -> void:
 	var slide := -h * panel_slide_ratio
 	if open:
 		设置面板.visible = true
-		面板容器.queue_sort()
+		面板容器.update_minimum_size()
 		面板容器.queue_redraw()
 		设置面板.modulate.a = 0.0
 		设置面板.position = Vector2(设置面板.position.x, slide)

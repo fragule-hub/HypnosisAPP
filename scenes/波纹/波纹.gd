@@ -40,7 +40,8 @@ func _apply_layout() -> void:
 	waves.anchor_bottom = 1.0
 	waves.size_flags_horizontal = Control.SIZE_EXPAND | Control.SIZE_FILL
 	waves.size_flags_vertical = Control.SIZE_EXPAND | Control.SIZE_FILL
-	queue_sort()
+	update_minimum_size()
+	waves.update_minimum_size()
 
 func _apply_mode_and_params() -> void:
 	if use_single_color:
