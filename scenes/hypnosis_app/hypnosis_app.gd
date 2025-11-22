@@ -44,6 +44,7 @@ var _press_start_pos: Vector2 = Vector2.ZERO
 
 func _ready() -> void:
 	get_viewport().size_changed.connect(_on_viewport_size_changed)
+	_enforce_portrait_orientation()
 	_apply_window_size(_get_visible_size())
 	_connect_ui()
 	_apply_all_from_ui()
@@ -254,6 +255,11 @@ func _on_fullscreen_toggled(on: bool) -> void:
 	else:
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
 	_apply_window_size(_get_visible_size())
+
+func _enforce_portrait_orientation() -> void:
+	var plat := OS.get_name()
+	if plat == "Android" or plat == "iOS":
+		DisplayServer.screen_set_orientation(DisplayServer.SCREEN_PORTRAIT)
 
 func _on_heart_visible_toggled(on: bool) -> void:
 	if settings and not _loading:

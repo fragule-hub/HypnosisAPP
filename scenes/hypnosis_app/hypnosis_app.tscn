@@ -20,6 +20,10 @@ corner_detail = 5
 script = ExtResource("1_j7c1u")
 swipe_open_threshold = 60.0
 swipe_close_threshold = 60.0
+panel_anim_duration = null
+panel_slide_ratio = null
+use_ratio_thresholds = null
+threshold_ratio = null
 
 [node name="波纹" parent="." instance=ExtResource("1_buslu")]
 offset_right = 540.0
