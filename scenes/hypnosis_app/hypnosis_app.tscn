@@ -1,0 +1,286 @@
+[gd_scene load_steps=5 format=3 uid="uid://bxnd42qmw4grb"]
+
+[ext_resource type="PackedScene" uid="uid://foj1hqe48xd4" path="res://scenes/波纹/波纹.tscn" id="1_buslu"]
+[ext_resource type="Script" uid="uid://b858ocss5rsy2" path="res://scenes/hypnosis_app/hypnosis_app.gd" id="1_j7c1u"]
+[ext_resource type="PackedScene" uid="uid://d1dkdjkql1aik" path="res://scenes/心/心.tscn" id="2_j7c1u"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j7c1u"]
+content_margin_left = 12.0
+content_margin_top = 8.0
+content_margin_right = 12.0
+content_margin_bottom = 8.0
+bg_color = Color(0.1, 0.1, 0.1, 0.6)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[node name="HypnosisAPP" type="Node2D"]
+script = ExtResource("1_j7c1u")
+swipe_open_threshold = 60.0
+swipe_close_threshold = 60.0
+
+[node name="波纹" parent="." instance=ExtResource("1_buslu")]
+offset_right = 540.0
+offset_bottom = 1170.0
+mouse_filter = 2
+tex_size_override = Vector2(540, 1170)
+rings = {
+"colors": [Color(1, 0, 1, 1), Color(1, 1, 1, 1)],
+"count": 2,
+"thicknesses": [0.1, 0.1]
+}
+
+[node name="心" parent="." instance=ExtResource("2_j7c1u")]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 220.0
+offset_top = 535.0
+offset_right = 320.0
+offset_bottom = 635.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+pulse_speed = 3.0
+
+[node name="设置面板" type="Control" parent="."]
+custom_minimum_size = Vector2(540, 1170)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="PanelContainer" type="PanelContainer" parent="设置面板"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_j7c1u")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="设置面板/PanelContainer"]
+layout_mode = 2
+
+[node name="设置文本" type="Label" parent="设置面板/PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 36
+text = "设置"
+
+[node name="操作介绍" type="Label" parent="设置面板/PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "向下滑动开启，向上滑动关闭"
+
+[node name="基础设置" type="FoldableContainer" parent="设置面板/PanelContainer/VBoxContainer"]
+layout_mode = 2
+title = "基础设置"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="设置面板/PanelContainer/VBoxContainer/基础设置"]
+layout_mode = 2
+
+[node name="全屏" type="CheckButton" parent="设置面板/PanelContainer/VBoxContainer/基础设置/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "全屏
+"
+
+[node name="心" type="CheckButton" parent="设置面板/PanelContainer/VBoxContainer/基础设置/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+button_pressed = true
+text = "心"
+
+[node name="心跳" type="CheckButton" parent="设置面板/PanelContainer/VBoxContainer/基础设置/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+button_pressed = true
+text = "心跳"
+
+[node name="纯色" type="CheckButton" parent="设置面板/PanelContainer/VBoxContainer/基础设置/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "纯色
+"
+
+[node name="波纹速度" type="SpinBox" parent="设置面板/PanelContainer/VBoxContainer/基础设置/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+min_value = 0.1
+max_value = 10.0
+step = 0.1
+value = 2.0
+prefix = "波纹速度："
+
+[node name="心跳速度" type="SpinBox" parent="设置面板/PanelContainer/VBoxContainer/基础设置/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+min_value = 0.1
+max_value = 10.0
+step = 0.1
+value = 1.2000000000000002
+prefix = "心跳速度："
+
+[node name="心跳幅度" type="SpinBox" parent="设置面板/PanelContainer/VBoxContainer/基础设置/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+min_value = 0.1
+max_value = 10.0
+step = 0.1
+value = 0.6
+prefix = "心跳幅度："
+
+[node name="心大小" type="SpinBox" parent="设置面板/PanelContainer/VBoxContainer/基础设置/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+min_value = 10.0
+step = 5.0
+value = 20.0
+prefix = "心大小："
+
+[node name="波纹颜色设置" type="FoldableContainer" parent="设置面板/PanelContainer/VBoxContainer"]
+layout_mode = 2
+title = "波纹颜色设置"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="设置面板/PanelContainer/VBoxContainer/波纹颜色设置"]
+layout_mode = 2
+
+[node name="颜色数量" type="SpinBox" parent="设置面板/PanelContainer/VBoxContainer/波纹颜色设置/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+min_value = 2.0
+max_value = 4.0
+value = 2.0
+prefix = "波纹数量："
+
+[node name="颜色选项1" type="HBoxContainer" parent="设置面板/PanelContainer/VBoxContainer/波纹颜色设置/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="ColorPickerButton" type="ColorPickerButton" parent="设置面板/PanelContainer/VBoxContainer/波纹颜色设置/VBoxContainer/颜色选项1"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.0
+text = "颜色1"
+color = Color(1, 1, 1, 1)
+
+[node name="SpinBox" type="SpinBox" parent="设置面板/PanelContainer/VBoxContainer/波纹颜色设置/VBoxContainer/颜色选项1"]
+layout_mode = 2
+min_value = 1.0
+value = 10.0
+
+[node name="颜色选项2" type="HBoxContainer" parent="设置面板/PanelContainer/VBoxContainer/波纹颜色设置/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="ColorPickerButton" type="ColorPickerButton" parent="设置面板/PanelContainer/VBoxContainer/波纹颜色设置/VBoxContainer/颜色选项2"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.0
+text = "颜色1"
+color = Color(0.9607843, 0.21176471, 0.80784315, 1)
+
+[node name="SpinBox" type="SpinBox" parent="设置面板/PanelContainer/VBoxContainer/波纹颜色设置/VBoxContainer/颜色选项2"]
+layout_mode = 2
+min_value = 1.0
+value = 10.0
+
+[node name="颜色选项3" type="HBoxContainer" parent="设置面板/PanelContainer/VBoxContainer/波纹颜色设置/VBoxContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+
+[node name="ColorPickerButton" type="ColorPickerButton" parent="设置面板/PanelContainer/VBoxContainer/波纹颜色设置/VBoxContainer/颜色选项3"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.0
+text = "颜色1"
+
+[node name="SpinBox" type="SpinBox" parent="设置面板/PanelContainer/VBoxContainer/波纹颜色设置/VBoxContainer/颜色选项3"]
+layout_mode = 2
+min_value = 1.0
+value = 10.0
+
+[node name="颜色选项4" type="HBoxContainer" parent="设置面板/PanelContainer/VBoxContainer/波纹颜色设置/VBoxContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+
+[node name="ColorPickerButton" type="ColorPickerButton" parent="设置面板/PanelContainer/VBoxContainer/波纹颜色设置/VBoxContainer/颜色选项4"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.0
+text = "颜色1"
+
+[node name="SpinBox" type="SpinBox" parent="设置面板/PanelContainer/VBoxContainer/波纹颜色设置/VBoxContainer/颜色选项4"]
+layout_mode = 2
+min_value = 1.0
+value = 10.0
+
+[node name="心设置" type="FoldableContainer" parent="设置面板/PanelContainer/VBoxContainer"]
+layout_mode = 2
+title = "心设置"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="设置面板/PanelContainer/VBoxContainer/心设置"]
+layout_mode = 2
+
+[node name="填充颜色" type="HBoxContainer" parent="设置面板/PanelContainer/VBoxContainer/心设置/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Label" type="Label" parent="设置面板/PanelContainer/VBoxContainer/心设置/VBoxContainer/填充颜色"]
+layout_mode = 2
+text = "  填充颜色：  "
+
+[node name="ColorPickerButton" type="ColorPickerButton" parent="设置面板/PanelContainer/VBoxContainer/心设置/VBoxContainer/填充颜色"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.0
+text = "颜色1"
+color = Color(1, 1, 1, 1)
+
+[node name="内边框颜色" type="HBoxContainer" parent="设置面板/PanelContainer/VBoxContainer/心设置/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Label" type="Label" parent="设置面板/PanelContainer/VBoxContainer/心设置/VBoxContainer/内边框颜色"]
+layout_mode = 2
+text = "内边框颜色："
+
+[node name="ColorPickerButton" type="ColorPickerButton" parent="设置面板/PanelContainer/VBoxContainer/心设置/VBoxContainer/内边框颜色"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.0
+text = "颜色1"
+color = Color(0.9607843, 0.21176471, 0.80784315, 1)
+
+[node name="SpinBox" type="SpinBox" parent="设置面板/PanelContainer/VBoxContainer/心设置/VBoxContainer/内边框颜色"]
+layout_mode = 2
+min_value = 1.0
+value = 20.0
+
+[node name="外边框颜色" type="HBoxContainer" parent="设置面板/PanelContainer/VBoxContainer/心设置/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Label" type="Label" parent="设置面板/PanelContainer/VBoxContainer/心设置/VBoxContainer/外边框颜色"]
+layout_mode = 2
+text = "外边框颜色："
+
+[node name="ColorPickerButton" type="ColorPickerButton" parent="设置面板/PanelContainer/VBoxContainer/心设置/VBoxContainer/外边框颜色"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.0
+text = "颜色1"
+color = Color(0.65882355, 0, 0.654902, 1)
+
+[node name="SpinBox" type="SpinBox" parent="设置面板/PanelContainer/VBoxContainer/心设置/VBoxContainer/外边框颜色"]
+layout_mode = 2
+min_value = 1.0
+value = 20.0

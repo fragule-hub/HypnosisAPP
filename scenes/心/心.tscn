@@ -1,0 +1,51 @@
+[gd_scene load_steps=4 format=3 uid="uid://d1dkdjkql1aik"]
+
+[ext_resource type="Script" uid="uid://bdrm5nsyfa57a" path="res://scenes/心/心.gd" id="1_03bur"]
+[ext_resource type="Shader" uid="uid://4vccamtcgm0i" path="res://scenes/心/心.gdshader" id="1_5wm2o"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_03bur"]
+shader = ExtResource("1_5wm2o")
+shader_parameter/fill_color = Color(1, 1, 1, 1)
+shader_parameter/inner_color = Color(0.937, 0.212, 0.804, 1)
+shader_parameter/outer_color = Color(0.647, 0, 0.631, 1)
+shader_parameter/stroke_outer = 20.0
+shader_parameter/stroke_inner = 20.0
+shader_parameter/softness = 2.0
+shader_parameter/glow_size = 40.0
+shader_parameter/glow_strength = 1.2
+shader_parameter/pulse_speed = 1.2
+shader_parameter/pulse_amount = 0.06
+shader_parameter/rotate_amount = 0.04
+shader_parameter/preserve_aspect = true
+shader_parameter/rect_size = Vector2(500, 500)
+
+[node name="心" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 100.0
+offset_bottom = 100.0
+script = ExtResource("1_03bur")
+target_size = Vector2(200, 200)
+fill_color = null
+inner_color = null
+outer_color = null
+stroke_outer = null
+stroke_inner = null
+softness = null
+glow_size = null
+glow_strength = null
+glow_enabled = null
+pulse_speed = null
+pulse_amount = null
+rotate_amount = null
+pulse_enabled = null
+preserve_aspect = null
+
+[node name="Heart" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_03bur")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2

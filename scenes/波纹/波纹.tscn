@@ -1,0 +1,31 @@
+[gd_scene load_steps=4 format=4 uid="uid://foj1hqe48xd4"]
+
+[ext_resource type="Shader" uid="uid://cmw7ny3lj2u3p" path="res://scenes/波纹/波纹.gdshader" id="1_hdlyh"]
+[ext_resource type="Script" uid="uid://cuis43tgumpqr" path="res://scenes/波纹/波纹.gd" id="1_vaf3k"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vaf3k"]
+shader = ExtResource("1_hdlyh")
+shader_parameter/center = Vector2(0.5, 0.5)
+shader_parameter/speed = 2.0
+shader_parameter/colors = PackedVector4Array(255, 0, 255, 0, 255, 20, 147, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+shader_parameter/color_count = 2
+shader_parameter/thicknesses = PackedFloat32Array(0.1, 0.1, 0, 0, 0, 0, 0, 0)
+shader_parameter/tex_size = Vector2(540, 1170)
+
+[node name="波纹" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_vaf3k")
+
+[node name="Waves" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_vaf3k")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
